@@ -1,0 +1,13 @@
+---
+- hosts: node
+  become: true
+  tasks:
+  - name: Stop service httpd, if started
+    service:
+     name: httpd
+     state: stopped
+  - name: Disable firewalld
+    firewalld:
+     port: 8081/tcp
+     permanent: yes
+     state: disabled
